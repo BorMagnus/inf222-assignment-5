@@ -248,17 +248,17 @@ typeProc env (Proc pname params stmt) = tenv'
   tenv2 = typeStmt (errorFree "OK":tenv1) stmt
   tenv' = addError "OK" tenv1 []
 
--- | Compute the type status of a procedure call: its return type if possible, otherwise an appropriate error message.
-typeProcCall :: TypeEnvironment -> ProcName -> [TypeName] -> Either String Type
-typeProcCall tenv pname args =
-  case lookup pname tenv of
-    Nothing -> Left $ "Undefined procedure " ++ show pname
-    Just (Left msg) -> Left msg
-    Just (Right (TProc ptypes t)) ->
-      if length args /= length ptypes
-      then Left $ "Invalid number of arguments for procedure " ++ show pname
-      else allSameDeclaration ("Procedure " ++ show pname ++ " call") t [typeExpr tenv e | (t, e) <- zip ptypes args]
-    Just (Right t) -> Left $ "Procedure " ++ show pname ++ " is not defined"
+-- | Compute the type status of a procedure call
+--typeProcCall :: TypeEnvironment -> ProcName -> [TypeName] -> TypeEnvironment
+--typeProcCall tenv pname args =
+--  case lookup pname tenv of
+--    Nothing -> Left $ "Undefined procedure " ++ show pname
+--    Just (Left msg) -> Left msg
+--    Just (Right (TProc ptypes t)) ->
+--      if length args /= length ptypes
+--      then Left $ "Invalid number of arguments for procedure " ++ show pname
+--      else allSameDeclaration ("Procedure " ++ show pname ++ " call") t [typeExpr tenv e --| (t, e) <- zip ptypes args]
+--    Just (Right t) -> Left $ "Procedure " ++ show pname ++ " is not defined"
 
 
 -------------------------

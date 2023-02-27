@@ -2,7 +2,7 @@
 
 ## 1.
 
-Algoritghm *computus_stmt_call_euclid* is located at line 440, where computus_stmt is switched with a call to the to *proc_euclid* procedure called "Euclid", where the first two arguments ("x" and "y") are input parameters and the last two arguments ("q" and "r") are output parameters. This is tested with the use of *test_computus_copy* (line 286) in *PIPLinterpreter.hs* that uses a copy of test_computus_exec called *test_computus_exec_copy* (line 309) in *PIPLexamples.hs*:
+The "computus_stmt_call_euclid" algorithm can be found at line 440. This algorithm replaces "computus_stmt" with a call to the "Euclid" procedure, which is defined in the "proc_euclid" procedure. The first two arguments of the "Euclid" procedure are "x" and "y," which are input parameters, while the last two arguments, "q" and "r," are output parameters. To test this algorithm, the "test_computus_copy" function, located at line 286 in PIPLinterpreter.hs, is used. This function utilizes a copy of the "test_computus_exec" function called "test_computus_exec_copy," which can be found at line 309 in PIPLexamples.hs.
 ```
 ghci> test_computus_copy
 "Testing the Computus copy algorithm for finding Easter Sunday"
@@ -56,6 +56,8 @@ In reference semantics, variables are passed by reference, meaning that when a p
 
 In contrast, copy-in/copy-out semantics pass variables by value, meaning that a copy of the variable is made and passed to the procedure, and any changes made to the copy inside the procedure do not affect the original variable in the calling environment. When running the copy-in/copy-out semantics tests, you can see that all tests produce the same results, regardless of the input values. This is because the procedure is not changing the original variables, but instead creating new copies of them and swapping the values of those copies.
 
-  
 
 ## 3.
+Task 3 was a bit more challenging for me, but I managed to create the "typeProc" type environment for a procedure. To do this, I used the "map" function to extract the list of parameter types, and then modified the fold function to extract the parameter name and type from each parameter tuple. I then added the list of parameter types as an error message using the "addError" function to the "tenv1" environment. This way, any errors encountered while type-checking the procedure body will include the parameter types in their error messages, ensuring a more comprehensive and informative error report.
+
+I began working on "typeProcCall", but unfortunately, I was unable to complete it.
